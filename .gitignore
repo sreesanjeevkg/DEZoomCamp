@@ -1,2 +1,4 @@
 .ipynb_checkpoints/
 nyTaxiData/
+*.csv
+.DS_Store
