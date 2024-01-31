@@ -1,1 +1,142 @@
 dezoomcamp-412116 - Project ID.
+export GOOGLE_CREDENTIALS="/Users/sreesanjeev/Downloads/dezoomcamp-412116-37ae855e8c6a.json"
+ssh-keygen -t rsa -f ~/.ssh/gcp -C sreesanjeev -b 2048`
+
+projects/DEZoomCamp2024/zones/us-central1-a/instances/dezoomcamp2024
+
+terraform apply -var="project=dezoomcamp-412116" -var="gcs_bucket_name=bucket-for-de-zoomcamp" -auto-approve
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_bigquery_dataset.demo_dataset will be created
+  + resource "google_bigquery_dataset" "demo_dataset" {
+      + creation_time              = (known after apply)
+      + dataset_id                 = "demo_dataset"
+      + default_collation          = (known after apply)
+      + delete_contents_on_destroy = false
+      + effective_labels           = (known after apply)
+      + etag                       = (known after apply)
+      + id                         = (known after apply)
+      + is_case_insensitive        = (known after apply)
+      + last_modified_time         = (known after apply)
+      + location                   = "US"
+      + max_time_travel_hours      = (known after apply)
+      + project                    = "dezoomcamp-412116"
+      + self_link                  = (known after apply)
+      + storage_billing_model      = (known after apply)
+      + terraform_labels           = (known after apply)
+    }
+
+  # google_compute_instance.default will be created
+  + resource "google_compute_instance" "default" {
+      + can_ip_forward       = false
+      + cpu_platform         = (known after apply)
+      + current_status       = (known after apply)
+      + deletion_protection  = false
+      + effective_labels     = (known after apply)
+      + guest_accelerator    = (known after apply)
+      + id                   = (known after apply)
+      + instance_id          = (known after apply)
+      + label_fingerprint    = (known after apply)
+      + machine_type         = "e2-standard-4"
+      + metadata_fingerprint = (known after apply)
+      + min_cpu_platform     = (known after apply)
+      + name                 = "dezoomcamp2024"
+      + project              = "dezoomcamp-412116"
+      + self_link            = (known after apply)
+      + tags_fingerprint     = (known after apply)
+      + terraform_labels     = (known after apply)
+      + zone                 = "us-central1-a"
+
+      + boot_disk {
+          + auto_delete                = true
+          + device_name                = "dezoomcamp2024"
+          + disk_encryption_key_sha256 = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          + mode                       = "READ_WRITE"
+          + source                     = (known after apply)
+
+          + initialize_params {
+              + enable_confidential_compute = false
+              + image                       = "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-11-bullseye-v20240110"
+              + labels                      = (known after apply)
+              + provisioned_iops            = (known after apply)
+              + provisioned_throughput      = (known after apply)
+              + size                        = 30
+              + type                        = "pd-balanced"
+            }
+        }
+
+      + network_interface {
+          + internal_ipv6_prefix_length = 0
+          + ipv6_access_type            = (known after apply)
+          + ipv6_address                = (known after apply)
+          + name                        = (known after apply)
+          + network                     = "https://www.googleapis.com/compute/v1/projects/dezoomcamp-412116/global/networks/default"
+          + network_ip                  = "10.128.0.2"
+          + queue_count                 = 0
+          + stack_type                  = "IPV4_ONLY"
+          + subnetwork                  = "https://www.googleapis.com/compute/v1/projects/dezoomcamp-412116/regions/us-central1/subnetworks/default"
+          + subnetwork_project          = "dezoomcamp-412116"
+        }
+
+      + reservation_affinity {
+          + type = "ANY_RESERVATION"
+        }
+    }
+
+  # google_storage_bucket.test will be created
+  + resource "google_storage_bucket" "test" {
+      + effective_labels            = (known after apply)
+      + force_destroy               = true
+      + id                          = (known after apply)
+      + location                    = "US"
+      + name                        = "bucket-for-de-zoomcamp"
+      + project                     = (known after apply)
+      + public_access_prevention    = (known after apply)
+      + rpo                         = (known after apply)
+      + self_link                   = (known after apply)
+      + storage_class               = "STANDARD"
+      + terraform_labels            = (known after apply)
+      + uniform_bucket_level_access = (known after apply)
+      + url                         = (known after apply)
+
+      + lifecycle_rule {
+          + action {
+              + type = "Delete"
+            }
+          + condition {
+              + age                   = 1
+              + matches_prefix        = []
+              + matches_storage_class = []
+              + matches_suffix        = []
+              + with_state            = (known after apply)
+            }
+        }
+      + lifecycle_rule {
+          + action {
+              + type = "AbortIncompleteMultipartUpload"
+            }
+          + condition {
+              + age                   = 1
+              + matches_prefix        = []
+              + matches_storage_class = []
+              + matches_suffix        = []
+              + with_state            = (known after apply)
+            }
+        }
+    }
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+google_bigquery_dataset.demo_dataset: Creating...
+google_storage_bucket.test: Creating...
+google_compute_instance.default: Creating...
+google_bigquery_dataset.demo_dataset: Creation complete after 1s [id=projects/dezoomcamp-412116/datasets/demo_dataset]
+google_storage_bucket.test: Creation complete after 2s [id=bucket-for-de-zoomcamp]
+google_compute_instance.default: Still creating... [10s elapsed]
+google_compute_instance.default: Creation complete after 13s [id=projects/dezoomcamp-412116/zones/us-central1-a/instances/dezoomcamp2024]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
