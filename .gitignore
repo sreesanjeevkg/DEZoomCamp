@@ -39,7 +39,6 @@ terraform.rc
 *.hcl
 data-engineering-zoomcamp/
 mage/mage_data
-mage/magic-zoomcamp
 mage/personal-gscp.json
 ny_taxi_data
 mage/*.env
