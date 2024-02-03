@@ -8,31 +8,31 @@ blocks:
     disable_query_preprocessing: false
     export_write_policy: append
     limit: 1000
-    use_raw_sql: false
+    use_raw_sql: true
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: sql
-  name: please_gcp
+  name: testing_with_new
   retry_config: null
-  status: failed
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: please_gcp
+  uuid: testing_with_new
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-01-31 02:44:19.767181+00:00'
+created_at: '2024-02-02 19:20:40.579749+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: old amulet
+name: charismatic quest
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -42,7 +42,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-02-02 19:20:21'
-uuid: old_amulet
+updated_at: '2024-02-02 19:25:50'
+uuid: charismatic_quest
 variables_dir: /home/src/mage_data/magic-zoomcamp
 widgets: []

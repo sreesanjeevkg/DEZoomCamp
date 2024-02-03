@@ -8,8 +8,9 @@ if 'test' not in globals():
 
 @data_loader
 def load_data_from_api(*args, **kwargs):
-    print("hello")
-    url = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz'
+    file_urls = ['https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2020-10.csv.gz',
+                'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2020-11.csv.gz',
+                'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2020-12.csv.gz']
     
     taxi_dtypes = {
                     'VendorID': pd.Int64Dtype(),
@@ -31,11 +32,18 @@ def load_data_from_api(*args, **kwargs):
                 }
 
     # native date parsing 
-    parse_dates = ['tpep_pickup_datetime', 'tpep_dropoff_datetime']
+    parse_dates = ['lpep_pickup_datetime', 'lpep_dropoff_datetime']
 
-    return pd.read_csv(
+    dfs = []
+
+    for url in file_urls:
+        df = pd.read_csv(
         url, sep=',', compression='gzip', dtype=taxi_dtypes, parse_dates=parse_dates
         )
+        dfs.append(df)
+    
+    return pd.concat(dfs, ignore_index=True)
+
 
 
 @test

@@ -42,3 +42,4 @@ mage/mage_data
 mage/personal-gcp.json
 ny_taxi_data
 mage/*.env
+mage/*.json

@@ -1,4 +1,4 @@
-FROM mageai/mageai:latest
+FROM mageai/mageai:alpha
 
 ARG USER_CODE_PATH=/home/src/${PROJECT_NAME}
 
