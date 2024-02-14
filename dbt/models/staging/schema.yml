@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging
+    database: dezoomcamp-412116
+    schema: ny_taxi_data
+    tables:
+      - name: external_fhv_dbt
+      - name: external_yellow_dbt
+      - name: external_green_dbt
